@@ -91,6 +91,48 @@ jobs:
           firstRunWhatIf: 'false'
           whatIfEnabled: 'true'
 
+      - name: 'What If: Governance-Landing Zones'
+        uses: oZakari-ALZ/alz-gh11-templates/.github/actions/bicep-deploy@main
+        with:
+          displayName: 'Governance-Landing Zones'
+          templateFilePath: 'templates/core/governance/mgmt-groups/landingzones/main.bicep'
+          templateParametersFilePath: 'templates/core/governance/mgmt-groups/landingzones/main.bicepparam'
+          managementGroupId: '${{ env.MANAGEMENT_GROUP_ID }}'
+          subscriptionId: '${{ env.SUBSCRIPTION_ID_MANAGEMENT }}'
+          resourceGroupName: ''
+          location: '${{ env.LOCATION }}'
+          deploymentType: 'managementGroup'
+          firstRunWhatIf: 'false'
+          whatIfEnabled: 'true'
+
+      - name: 'What If: Governance-Landing Zones Corp'
+        uses: oZakari-ALZ/alz-gh11-templates/.github/actions/bicep-deploy@main
+        with:
+          displayName: 'Governance-Landing Zones Corp'
+          templateFilePath: 'templates/core/governance/mgmt-groups/landingzones/landingzones-corp/main.bicep'
+          templateParametersFilePath: 'templates/core/governance/mgmt-groups/landingzones/landingzones-corp/main.bicepparam'
+          managementGroupId: '${{ env.MANAGEMENT_GROUP_ID }}'
+          subscriptionId: '${{ env.SUBSCRIPTION_ID_MANAGEMENT }}'
+          resourceGroupName: ''
+          location: '${{ env.LOCATION }}'
+          deploymentType: 'managementGroup'
+          firstRunWhatIf: 'false'
+          whatIfEnabled: 'true'
+
+      - name: 'What If: Governance-Landing Zones Online'
+        uses: oZakari-ALZ/alz-gh11-templates/.github/actions/bicep-deploy@main
+        with:
+          displayName: 'Governance-Landing Zones Online'
+          templateFilePath: 'templates/core/governance/mgmt-groups/landingzones/landingzones-online/main.bicep'
+          templateParametersFilePath: 'templates/core/governance/mgmt-groups/landingzones/landingzones-online/main.bicepparam'
+          managementGroupId: '${{ env.MANAGEMENT_GROUP_ID }}'
+          subscriptionId: '${{ env.SUBSCRIPTION_ID_MANAGEMENT }}'
+          resourceGroupName: ''
+          location: '${{ env.LOCATION }}'
+          deploymentType: 'managementGroup'
+          firstRunWhatIf: 'false'
+          whatIfEnabled: 'true'
+
       - name: 'What If: Governance-Platform'
         uses: oZakari-ALZ/alz-gh11-templates/.github/actions/bicep-deploy@main
         with:
@@ -153,48 +195,6 @@ jobs:
           displayName: 'Governance-Platform Security'
           templateFilePath: 'templates/core/governance/mgmt-groups/platform/platform-security/main.bicep'
           templateParametersFilePath: 'templates/core/governance/mgmt-groups/platform/platform-security/main.bicepparam'
-          managementGroupId: '${{ env.MANAGEMENT_GROUP_ID }}'
-          subscriptionId: '${{ env.SUBSCRIPTION_ID_MANAGEMENT }}'
-          resourceGroupName: ''
-          location: '${{ env.LOCATION }}'
-          deploymentType: 'managementGroup'
-          firstRunWhatIf: 'false'
-          whatIfEnabled: 'true'
-
-      - name: 'What If: Governance-Landing Zones'
-        uses: oZakari-ALZ/alz-gh11-templates/.github/actions/bicep-deploy@main
-        with:
-          displayName: 'Governance-Landing Zones'
-          templateFilePath: 'templates/core/governance/mgmt-groups/landingzones/main.bicep'
-          templateParametersFilePath: 'templates/core/governance/mgmt-groups/landingzones/main.bicepparam'
-          managementGroupId: '${{ env.MANAGEMENT_GROUP_ID }}'
-          subscriptionId: '${{ env.SUBSCRIPTION_ID_MANAGEMENT }}'
-          resourceGroupName: ''
-          location: '${{ env.LOCATION }}'
-          deploymentType: 'managementGroup'
-          firstRunWhatIf: 'false'
-          whatIfEnabled: 'true'
-
-      - name: 'What If: Governance-Landing Zones Corp'
-        uses: oZakari-ALZ/alz-gh11-templates/.github/actions/bicep-deploy@main
-        with:
-          displayName: 'Governance-Landing Zones Corp'
-          templateFilePath: 'templates/core/governance/mgmt-groups/landingzones/landingzones-corp/main.bicep'
-          templateParametersFilePath: 'templates/core/governance/mgmt-groups/landingzones/landingzones-corp/main.bicepparam'
-          managementGroupId: '${{ env.MANAGEMENT_GROUP_ID }}'
-          subscriptionId: '${{ env.SUBSCRIPTION_ID_MANAGEMENT }}'
-          resourceGroupName: ''
-          location: '${{ env.LOCATION }}'
-          deploymentType: 'managementGroup'
-          firstRunWhatIf: 'false'
-          whatIfEnabled: 'true'
-
-      - name: 'What If: Governance-Landing Zones Online'
-        uses: oZakari-ALZ/alz-gh11-templates/.github/actions/bicep-deploy@main
-        with:
-          displayName: 'Governance-Landing Zones Online'
-          templateFilePath: 'templates/core/governance/mgmt-groups/landingzones/landingzones-online/main.bicep'
-          templateParametersFilePath: 'templates/core/governance/mgmt-groups/landingzones/landingzones-online/main.bicepparam'
           managementGroupId: '${{ env.MANAGEMENT_GROUP_ID }}'
           subscriptionId: '${{ env.SUBSCRIPTION_ID_MANAGEMENT }}'
           resourceGroupName: ''
