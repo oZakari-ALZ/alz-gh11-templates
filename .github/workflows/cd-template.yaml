@@ -9,6 +9,15 @@ on:
       governance-int-root:
         type: boolean
         default: true
+      governance-landingzones:
+        type: boolean
+        default: true
+      governance-landingzones-corp:
+        type: boolean
+        default: true
+      governance-landingzones-online:
+        type: boolean
+        default: true
       governance-platform:
         type: boolean
         default: true
@@ -22,15 +31,6 @@ on:
         type: boolean
         default: true
       governance-platform-security:
-        type: boolean
-        default: true
-      governance-landingzones:
-        type: boolean
-        default: true
-      governance-landingzones-corp:
-        type: boolean
-        default: true
-      governance-landingzones-online:
         type: boolean
         default: true
       governance-sandbox:
@@ -97,6 +97,51 @@ jobs:
           displayName: 'Governance-Intermediate Root'
           templateFilePath: 'templates/core/governance/mgmt-groups/int-root/main.bicep'
           templateParametersFilePath: 'templates/core/governance/mgmt-groups/int-root/main.bicepparam'
+          managementGroupId: '${{ env.MANAGEMENT_GROUP_ID }}'
+          subscriptionId: '${{ env.SUBSCRIPTION_ID_MANAGEMENT }}'
+          resourceGroupName: ''
+          location: '${{ env.LOCATION }}'
+          deploymentType: 'managementGroup'
+          firstRunWhatIf: 'false'
+          whatIfEnabled: 'true'
+
+      - name: 'Plan: Governance-Landing Zones'
+        uses: oZakari-ALZ/alz-gh11-templates/.github/actions/bicep-deploy@main
+        if: ${{ inputs.governance-landingzones }}
+        with:
+          displayName: 'Governance-Landing Zones'
+          templateFilePath: 'templates/core/governance/mgmt-groups/landingzones/main.bicep'
+          templateParametersFilePath: 'templates/core/governance/mgmt-groups/landingzones/main.bicepparam'
+          managementGroupId: '${{ env.MANAGEMENT_GROUP_ID }}'
+          subscriptionId: '${{ env.SUBSCRIPTION_ID_MANAGEMENT }}'
+          resourceGroupName: ''
+          location: '${{ env.LOCATION }}'
+          deploymentType: 'managementGroup'
+          firstRunWhatIf: 'false'
+          whatIfEnabled: 'true'
+
+      - name: 'Plan: Governance-Landing Zones Corp'
+        uses: oZakari-ALZ/alz-gh11-templates/.github/actions/bicep-deploy@main
+        if: ${{ inputs.governance-landingzones-corp }}
+        with:
+          displayName: 'Governance-Landing Zones Corp'
+          templateFilePath: 'templates/core/governance/mgmt-groups/landingzones/landingzones-corp/main.bicep'
+          templateParametersFilePath: 'templates/core/governance/mgmt-groups/landingzones/landingzones-corp/main.bicepparam'
+          managementGroupId: '${{ env.MANAGEMENT_GROUP_ID }}'
+          subscriptionId: '${{ env.SUBSCRIPTION_ID_MANAGEMENT }}'
+          resourceGroupName: ''
+          location: '${{ env.LOCATION }}'
+          deploymentType: 'managementGroup'
+          firstRunWhatIf: 'false'
+          whatIfEnabled: 'true'
+
+      - name: 'Plan: Governance-Landing Zones Online'
+        uses: oZakari-ALZ/alz-gh11-templates/.github/actions/bicep-deploy@main
+        if: ${{ inputs.governance-landingzones-online }}
+        with:
+          displayName: 'Governance-Landing Zones Online'
+          templateFilePath: 'templates/core/governance/mgmt-groups/landingzones/landingzones-online/main.bicep'
+          templateParametersFilePath: 'templates/core/governance/mgmt-groups/landingzones/landingzones-online/main.bicepparam'
           managementGroupId: '${{ env.MANAGEMENT_GROUP_ID }}'
           subscriptionId: '${{ env.SUBSCRIPTION_ID_MANAGEMENT }}'
           resourceGroupName: ''
@@ -172,51 +217,6 @@ jobs:
           displayName: 'Governance-Platform Security'
           templateFilePath: 'templates/core/governance/mgmt-groups/platform/platform-security/main.bicep'
           templateParametersFilePath: 'templates/core/governance/mgmt-groups/platform/platform-security/main.bicepparam'
-          managementGroupId: '${{ env.MANAGEMENT_GROUP_ID }}'
-          subscriptionId: '${{ env.SUBSCRIPTION_ID_MANAGEMENT }}'
-          resourceGroupName: ''
-          location: '${{ env.LOCATION }}'
-          deploymentType: 'managementGroup'
-          firstRunWhatIf: 'false'
-          whatIfEnabled: 'true'
-
-      - name: 'Plan: Governance-Landing Zones'
-        uses: oZakari-ALZ/alz-gh11-templates/.github/actions/bicep-deploy@main
-        if: ${{ inputs.governance-landingzones }}
-        with:
-          displayName: 'Governance-Landing Zones'
-          templateFilePath: 'templates/core/governance/mgmt-groups/landingzones/main.bicep'
-          templateParametersFilePath: 'templates/core/governance/mgmt-groups/landingzones/main.bicepparam'
-          managementGroupId: '${{ env.MANAGEMENT_GROUP_ID }}'
-          subscriptionId: '${{ env.SUBSCRIPTION_ID_MANAGEMENT }}'
-          resourceGroupName: ''
-          location: '${{ env.LOCATION }}'
-          deploymentType: 'managementGroup'
-          firstRunWhatIf: 'false'
-          whatIfEnabled: 'true'
-
-      - name: 'Plan: Governance-Landing Zones Corp'
-        uses: oZakari-ALZ/alz-gh11-templates/.github/actions/bicep-deploy@main
-        if: ${{ inputs.governance-landingzones-corp }}
-        with:
-          displayName: 'Governance-Landing Zones Corp'
-          templateFilePath: 'templates/core/governance/mgmt-groups/landingzones/landingzones-corp/main.bicep'
-          templateParametersFilePath: 'templates/core/governance/mgmt-groups/landingzones/landingzones-corp/main.bicepparam'
-          managementGroupId: '${{ env.MANAGEMENT_GROUP_ID }}'
-          subscriptionId: '${{ env.SUBSCRIPTION_ID_MANAGEMENT }}'
-          resourceGroupName: ''
-          location: '${{ env.LOCATION }}'
-          deploymentType: 'managementGroup'
-          firstRunWhatIf: 'false'
-          whatIfEnabled: 'true'
-
-      - name: 'Plan: Governance-Landing Zones Online'
-        uses: oZakari-ALZ/alz-gh11-templates/.github/actions/bicep-deploy@main
-        if: ${{ inputs.governance-landingzones-online }}
-        with:
-          displayName: 'Governance-Landing Zones Online'
-          templateFilePath: 'templates/core/governance/mgmt-groups/landingzones/landingzones-online/main.bicep'
-          templateParametersFilePath: 'templates/core/governance/mgmt-groups/landingzones/landingzones-online/main.bicepparam'
           managementGroupId: '${{ env.MANAGEMENT_GROUP_ID }}'
           subscriptionId: '${{ env.SUBSCRIPTION_ID_MANAGEMENT }}'
           resourceGroupName: ''
@@ -338,6 +338,45 @@ jobs:
           location: '${{ env.LOCATION }}'
           deploymentType: 'managementGroup'
 
+      - name: 'Deploy: Governance-Landing Zones'
+        uses: oZakari-ALZ/alz-gh11-templates/.github/actions/bicep-deploy@main
+        if: ${{ inputs.governance-landingzones }}
+        with:
+          displayName: 'Governance-Landing Zones'
+          templateFilePath: 'templates/core/governance/mgmt-groups/landingzones/main.bicep'
+          templateParametersFilePath: 'templates/core/governance/mgmt-groups/landingzones/main.bicepparam'
+          managementGroupId: '${{ env.MANAGEMENT_GROUP_ID }}'
+          subscriptionId: '${{ env.SUBSCRIPTION_ID_MANAGEMENT }}'
+          resourceGroupName: ''
+          location: '${{ env.LOCATION }}'
+          deploymentType: 'managementGroup'
+
+      - name: 'Deploy: Governance-Landing Zones Corp'
+        uses: oZakari-ALZ/alz-gh11-templates/.github/actions/bicep-deploy@main
+        if: ${{ inputs.governance-landingzones-corp }}
+        with:
+          displayName: 'Governance-Landing Zones Corp'
+          templateFilePath: 'templates/core/governance/mgmt-groups/landingzones/landingzones-corp/main.bicep'
+          templateParametersFilePath: 'templates/core/governance/mgmt-groups/landingzones/landingzones-corp/main.bicepparam'
+          managementGroupId: '${{ env.MANAGEMENT_GROUP_ID }}'
+          subscriptionId: '${{ env.SUBSCRIPTION_ID_MANAGEMENT }}'
+          resourceGroupName: ''
+          location: '${{ env.LOCATION }}'
+          deploymentType: 'managementGroup'
+
+      - name: 'Deploy: Governance-Landing Zones Online'
+        uses: oZakari-ALZ/alz-gh11-templates/.github/actions/bicep-deploy@main
+        if: ${{ inputs.governance-landingzones-online }}
+        with:
+          displayName: 'Governance-Landing Zones Online'
+          templateFilePath: 'templates/core/governance/mgmt-groups/landingzones/landingzones-online/main.bicep'
+          templateParametersFilePath: 'templates/core/governance/mgmt-groups/landingzones/landingzones-online/main.bicepparam'
+          managementGroupId: '${{ env.MANAGEMENT_GROUP_ID }}'
+          subscriptionId: '${{ env.SUBSCRIPTION_ID_MANAGEMENT }}'
+          resourceGroupName: ''
+          location: '${{ env.LOCATION }}'
+          deploymentType: 'managementGroup'
+
       - name: 'Deploy: Governance-Platform'
         uses: oZakari-ALZ/alz-gh11-templates/.github/actions/bicep-deploy@main
         if: ${{ inputs.governance-platform }}
@@ -397,45 +436,6 @@ jobs:
           displayName: 'Governance-Platform Security'
           templateFilePath: 'templates/core/governance/mgmt-groups/platform/platform-security/main.bicep'
           templateParametersFilePath: 'templates/core/governance/mgmt-groups/platform/platform-security/main.bicepparam'
-          managementGroupId: '${{ env.MANAGEMENT_GROUP_ID }}'
-          subscriptionId: '${{ env.SUBSCRIPTION_ID_MANAGEMENT }}'
-          resourceGroupName: ''
-          location: '${{ env.LOCATION }}'
-          deploymentType: 'managementGroup'
-
-      - name: 'Deploy: Governance-Landing Zones'
-        uses: oZakari-ALZ/alz-gh11-templates/.github/actions/bicep-deploy@main
-        if: ${{ inputs.governance-landingzones }}
-        with:
-          displayName: 'Governance-Landing Zones'
-          templateFilePath: 'templates/core/governance/mgmt-groups/landingzones/main.bicep'
-          templateParametersFilePath: 'templates/core/governance/mgmt-groups/landingzones/main.bicepparam'
-          managementGroupId: '${{ env.MANAGEMENT_GROUP_ID }}'
-          subscriptionId: '${{ env.SUBSCRIPTION_ID_MANAGEMENT }}'
-          resourceGroupName: ''
-          location: '${{ env.LOCATION }}'
-          deploymentType: 'managementGroup'
-
-      - name: 'Deploy: Governance-Landing Zones Corp'
-        uses: oZakari-ALZ/alz-gh11-templates/.github/actions/bicep-deploy@main
-        if: ${{ inputs.governance-landingzones-corp }}
-        with:
-          displayName: 'Governance-Landing Zones Corp'
-          templateFilePath: 'templates/core/governance/mgmt-groups/landingzones/landingzones-corp/main.bicep'
-          templateParametersFilePath: 'templates/core/governance/mgmt-groups/landingzones/landingzones-corp/main.bicepparam'
-          managementGroupId: '${{ env.MANAGEMENT_GROUP_ID }}'
-          subscriptionId: '${{ env.SUBSCRIPTION_ID_MANAGEMENT }}'
-          resourceGroupName: ''
-          location: '${{ env.LOCATION }}'
-          deploymentType: 'managementGroup'
-
-      - name: 'Deploy: Governance-Landing Zones Online'
-        uses: oZakari-ALZ/alz-gh11-templates/.github/actions/bicep-deploy@main
-        if: ${{ inputs.governance-landingzones-online }}
-        with:
-          displayName: 'Governance-Landing Zones Online'
-          templateFilePath: 'templates/core/governance/mgmt-groups/landingzones/landingzones-online/main.bicep'
-          templateParametersFilePath: 'templates/core/governance/mgmt-groups/landingzones/landingzones-online/main.bicepparam'
           managementGroupId: '${{ env.MANAGEMENT_GROUP_ID }}'
           subscriptionId: '${{ env.SUBSCRIPTION_ID_MANAGEMENT }}'
           resourceGroupName: ''
